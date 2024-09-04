@@ -1,13 +1,22 @@
-import profilePhoto from './assets/profile-photo.png';
-import './App.css';
+import { useState } from 'react'
+import profilePicture from './assets/profile-photo.png'
+import './App.css'
 
 function App() {
+  const [count, setCount] = useState(0)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={profilePhoto} alt="The King of Swag" height={200}/>
+    <>
+      <div>
+        <img src={profilePicture} className="logo" alt="Mr. Swag Money Himself" />
+      </div>
+      <h1>Welcome to camdenbettencourt.com- <i>now with React!</i></h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
         <p>
-          Welcome to camdenbettencourt.com- <em>now with React!</em> Planned pages include:
+          Planned pages include:
           <ul>
             <li>
               Homepage
@@ -33,9 +42,9 @@ function App() {
           </ul>
           Hand-coded with care by Camden Bettencourt.
         </p>
-      </header>
-    </div>
-  );
+      </div>
+    </>
+  )
 }
 
-export default App;
+export default App
