@@ -1,50 +1,19 @@
-import { useState } from 'react'
-import profilePicture from './assets/profile-photo.png'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Home from './pages/home';
+import Socials from './pages/Socials';
+import Portfolio from './pages/Portfolio';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <img src={profilePicture} className="logo" alt="Mr. Swag Money Himself" />
-      </div>
-      <h1>Welcome to camdenbettencourt.com- <i>now with React!</i></h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Planned pages include:
-          <ul>
-            <li>
-              Homepage
-            </li>
-            <li>
-              Resume page
-            </li>
-            <li>
-              Projects page
-            </li>
-            <li>
-              Digibug page
-            </li>
-            <li>
-              Socials page
-            </li>
-            <li>
-              About page
-            </li>
-            <li>
-              Blog?
-            </li>
-          </ul>
-          Hand-coded with care by Camden Bettencourt.
-        </p>
-      </div>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/socials" element={<Socials />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+      </Routes>
+    </Router>
   )
 }
 
-export default App
+export default App;
