@@ -1,28 +1,31 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Card, Grid, Stack, Typography } from '@mui/material';
-import "@fontsource/cinzel"
-import baby from '../assets/color1/baby.png';
-import dawgs from '../assets/color1/dawgs.png';
-import gang from '../assets/color1/gang.png';
-import suit from '../assets/color1/suit.png';
-import jersey from '../assets/color1/jersey.png';
-import jotch from '../assets/color1/jotch.png';
-import moneky from '../assets/color1/moneky.png';
-import punkin from '../assets/color1/punkin.png';
-import root from '../assets/color1/root.png';
-import scoot from '../assets/color1/scoot.png';
-import stance from '../assets/color1/stance.png';
-import traffic from '../assets/color1/traffic.png';
-import wall from '../assets/color1/wall.png';
-import win from '../assets/color1/win.png';
+import "@fontsource/cinzel";
+import '../styles/fonts.css'; 
+
+import baby1 from '../assets/color1/baby.png';
+import dawgs1 from '../assets/color1/dawgs.png';
+import gang1 from '../assets/color1/gang.png';
+import suit1 from '../assets/color1/suit.png';
+import jersey1 from '../assets/color1/jersey.png';
+import jotch1 from '../assets/color1/jotch.png';
+import moneky1 from '../assets/color1/moneky.png';
+import punkin1 from '../assets/color1/punkin.png';
+import root1 from '../assets/color1/root.png';
+import scoot1 from '../assets/color1/scoot.png';
+import stance1 from '../assets/color1/stance.png';
+import traffic1 from '../assets/color1/traffic.png';
+import wall1 from '../assets/color1/wall.png';
+import win1 from '../assets/color1/win.png';
+
 import '../App.css';
 
 function Home() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const images = [suit, baby, dawgs, gang, jersey, jotch, moneky, punkin, root, scoot, stance, traffic, wall, win];
+  const images = [suit1, baby1, dawgs1, gang1, jersey1, jotch1, moneky1, punkin1, root1, scoot1, stance1, traffic1, wall1, win1];
   const [imageIndex, setImageIndex] = useState(0);
   
   const handleImageClick = () => {
@@ -80,31 +83,53 @@ function Home() {
               alt="Random profile"
               className="profile-image"
               onClick={handleImageClick}
-              style={{ maxWidth: '100%', borderRadius: '8px' }}
+              style={{ 
+                maxWidth: '100%', 
+                maxHeight: '50vh', 
+                width: 'auto', 
+                height: 'auto', 
+                objectFit: 'contain',
+                borderRadius: '8px' }}
             />
-          <Typography><i>"Geese are just battle ducks." - Me, 2016</i></Typography>
+          <Typography
+            sx={{
+              color: '#513450',
+              fontFamily: 'HeyGorgeous, sans'
+            }}><i>"Geese are just battle ducks." - Me, 2016</i></Typography> {/* Eventually rotate the quotes here */}
         </Stack>
       </Grid>
 
       <Grid item xs={12} md={6} sx={{ textAlign: 'center' }}>
         {/* blurb */}
-        <Typography>
-          {bioString}<a href="mailto:camden.r.bettencourt@gmail.com">email</a>.
+        <Typography
+          sx={{
+            color: '#513450',
+            fontFamily: 'Cinzel, sans'
+          }}>
+            <b>
+              {bioString}<a href="mailto:camden.r.bettencourt@gmail.com">email</a>.
+            </b>
         </Typography>
       </Grid>
 
       <Grid item xs={12} md={3} sx={{ textAlign: 'center' }}>
         {/* directory (layout also viewport-width-dependent) */}
-        <Typography>
-          {navItems.map((item) => (
-                <li
-                  key={item.name}
-                  className={location.pathname === item.path ? 'active' : ''}
-                  onClick={() => navigate(item.path)}
-                >
-                  {item.name}
-                </li>
-              ))}
+        <Typography
+          sx={{
+            color: '#513450',
+            fontFamily: 'Cinzel, sans'
+          }}>
+            <b>
+              {navItems.map((item) => (
+                    <li
+                      key={item.name}
+                      className={location.pathname === item.path ? 'active' : ''}
+                      onClick={() => navigate(item.path)}
+                    >
+                      {item.name}
+                    </li>
+                  ))}
+            </b>
         </Typography>
       </Grid>
     </Grid>

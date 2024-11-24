@@ -1,0 +1,19 @@
+/* Local Font: Hey Gorgeous */
+@font-face {
+    font-family: 'HeyGorgeous'; /* Custom font name */
+    src: url('../assets/fonts/heygorgeous.ttf') format('truetype'); /* Path to your TTF file */
+    font-weight: normal;
+    font-style: normal;
+  }
+
+body {
+    font-family: 'Cinzel', serif
+}
+
+h1 {
+    font-family: 'HeyGorgeous', cursive
+}
+
+p {
+    font-family: 'Cinzel', serif
+}
