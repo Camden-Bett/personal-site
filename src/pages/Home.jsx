@@ -15,7 +15,7 @@ import scoot from '../assets/color1/scoot.png';
 import stance from '../assets/color1/stance.png';
 import traffic from '../assets/color1/traffic.png';
 import wall from '../assets/color1/wall.png';
-import win from '../assets/color1/window.png';
+import win from '../assets/color1/win.png';
 import '../App.css';
 
 function Home() {
