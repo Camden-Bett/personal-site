@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Card, Grid, Stack, Typography } from '@mui/material';
+import { Card, Divider, Grid, Stack, Typography } from '@mui/material';
 import "@fontsource/cinzel";
+import "@fontsource/manrope";
 import '../styles/fonts.css'; 
 
 import baby1 from '../assets/color1/baby.png';
@@ -36,45 +37,10 @@ function Home() {
     setImageIndex(newIndex);
   };
 
-  const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Resume', path: '/resume' },
-    { name: 'Projects', path: '/projects' },
-    { name: 'Socials', path: '/socials' },
-    { name: 'Digibug', path: '/digibug' },
-    { name: 'Achievements', path: '/achievements' },
-    { name: 'About', path: '/about' },
-    { name: 'Blog...?', path: '/blog' },
-  ];
-
-  const bioString = "Welcome to my personal website. I'm a recent computer science graduate with a passion for game development, full-stack web development, and creative projects! My site is still a work in progress, but I am enjoying coding it by hand in React. For inquiries, please reach out via ";
+  const bioString = "Welcome to my personal website. I'm a recent computer science graduate with a passion for game development, full-stack web development, and creative projects! My site is still a work in progress, but I am enjoying coding it by hand in React. Try clicking my profile photo! For inquiries, please reach out via ";
 
   return (
-    <Grid 
-      container 
-      spacing={2} 
-      wrap="wrap" 
-      columns={12} 
-      sx={{ 
-        width: '100vw', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        minHeight: '50vh', 
-        paddingTop: '0vh',
-        flexDirection: { xs: 'column', md: 'row' } }}>
-      <Grid item xs={12}>
-        {/* website header */}
-        <Typography 
-          sx={{ 
-            fontSize: 'clamp(1rem, 5vw, 5rem)', 
-            textAlign: 'center',
-            padding: '4vh',
-            color: '#513450',
-            fontFamily: 'Cinzel, serif' }}>
-            <b>CamdenBettencourt.com</b>
-        </Typography>
-      </Grid>
-
+    <>
       <Grid item xs={12} md={3} sx={{ textAlign: 'center' }}>
         {/* photo, splash text */}
         <Stack spacing={2}>
@@ -103,36 +69,15 @@ function Home() {
         {/* blurb */}
         <Typography
           sx={{
-            color: '#513450',
-            fontFamily: 'Cinzel, sans'
+            color: '#080705',
+            fontFamily: 'Manrope, sans'
           }}>
             <b>
               {bioString}<a href="mailto:camden.r.bettencourt@gmail.com">email</a>.
             </b>
         </Typography>
       </Grid>
-
-      <Grid item xs={12} md={3} sx={{ textAlign: 'center' }}>
-        {/* directory (layout also viewport-width-dependent) */}
-        <Typography
-          sx={{
-            color: '#513450',
-            fontFamily: 'Cinzel, sans'
-          }}>
-            <b>
-              {navItems.map((item) => (
-                    <li
-                      key={item.name}
-                      className={location.pathname === item.path ? 'active' : ''}
-                      onClick={() => navigate(item.path)}
-                    >
-                      {item.name}
-                    </li>
-                  ))}
-            </b>
-        </Typography>
-      </Grid>
-    </Grid>
+    </>
   );
 }
 
