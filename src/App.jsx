@@ -15,6 +15,7 @@ import {
 import Home from './pages/Home.jsx';
 import Socials from './pages/Socials';
 import Portfolio from './pages/Portfolio';
+import Redirect from './components/Redirect';
 
 function App() {
   const navItems = [
@@ -37,17 +38,17 @@ function App() {
       sx={{ 
         width: '100vw', 
         justifyContent: 'center', 
-        alignItems: 'center', 
-        minHeight: '50vh', 
-        paddingTop: '0vh',
+        alignItems: 'flex-start', 
+        minHeight: '100vh', 
+        paddingTop: 0,
         flexDirection: { xs: 'column', md: 'row' } }}>
-      <Grid item xs={12}>
+      <Grid item xs={12} height='10vh'>
         {/* website header */}
         <Typography 
           sx={{ 
             fontSize: 'clamp(0.5rem, 5vw, 7rem)', 
             textAlign: 'center',
-            padding: '4vh',
+            padding: '2vh',
             color: '#513450',
             fontFamily: 'Cinzel, serif' 
           }}>
@@ -66,36 +67,38 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/socials" element={<Socials />} />
           <Route path="/portfolio" element={<Portfolio />} />
+          {/* funny rickroll */}
+          <Route path="/secret" element={<Redirect to="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />} /> 
         </Routes>
       </Router>
 
       {/* directory, spacer, & logo */}
-      <Grid item xs={12} md={3} sx={{ textAlign: 'center' }}>
+      <Grid item xs={12} md={3} sx={{ textAlign: 'center', flexShrink: 0 }}>
         <Stack justifyContent='space-between'>
           <Card sx={{background: '#60594D', borderRadius: '16px'}} >
             {/* directory (layout also viewport-width-dependent) */}
-            {/*figure out why color/onclick is bonked*/}
-            {navItems.map((item) => (
-                  <List disablePadding>
-                    {item.name !== navItems[0].name ? <Divider variant='middle' /> : null}
-                    <ListItem disablePadding>
-                      <ListItemButton component='a' href={item.path} sx={{justifyContent: 'center'}}>
-                        <Typography sx={{
-                          fontSize: '24px', 
-                          textAlign: 'center',
-                          fontFamily: 'Cinzel, serif'
-                        }}
-                          color={item.path === location.pathname ? '#080705' : '#ECE2D0'}
-                        >
-                          <b>
-                            {item.name}
-                          </b>
-                        </Typography>
-                      </ListItemButton>
-                    </ListItem>
-                    
-                  </List>
-                ))}
+            <>
+              {navItems.map((item) => (
+                    <List disablePadding>
+                      {item.name !== navItems[0].name ? <Divider variant='middle' /> : null}
+                      <ListItem disablePadding>
+                        <ListItemButton component='a' href={item.path} sx={{justifyContent: 'center'}}>
+                          <Typography sx={{
+                            fontSize: '24px', 
+                            textAlign: 'center',
+                            fontFamily: 'Cinzel, serif'
+                          }}
+                            color={item.path === location.pathname ? '#080705' : '#ECE2D0'}
+                          >
+                            <b>
+                              {item.name}
+                            </b>
+                          </Typography>
+                        </ListItemButton>
+                      </ListItem>
+                    </List>
+                  ))}
+            </>
           </Card>
         </Stack>
       </Grid>

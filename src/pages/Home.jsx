@@ -28,6 +28,17 @@ function Home() {
 
   const images = [suit1, baby1, dawgs1, gang1, jersey1, jotch1, moneky1, punkin1, root1, scoot1, stance1, traffic1, wall1, win1];
   const [imageIndex, setImageIndex] = useState(0);
+
+  const quotes = ['Try clicking everything on the page!',
+                  '\"Geese are just battle ducks.\" - Me, 2016',
+                  '\"It takes two to tango,\" she murmured into his ear. He paused, choking back a sob. \"I only know how to waltz!\"',
+                  'There is no direct equivalent to normal cheetos.',
+                  'Hot take: fridge pizza is an elite breakfast food.',
+                  '\"It must be 4:04, because I can\'t find the time for you right now!\" - Me, 2023',
+                  '\"The argument against being a goblin master is... there is none. The argument for being a goblin master is, they\'re just little guys.\" - Me, 2022',
+                  '\"Cleaning is just putting stuff in less obvious places.\" - Me, 2014',
+                  'camdenbettencourt.com/secret'];
+  const [quoteIndex, setQuoteIndex] = useState(0);
   
   const handleImageClick = () => {
     let newIndex;
@@ -35,6 +46,14 @@ function Home() {
       newIndex = Math.floor(Math.random() * images.length); // Generate a random index
     } while (newIndex === imageIndex); // Ensure it's not the same as the current index
     setImageIndex(newIndex);
+  };
+  
+  const handleQuoteClick = () => {
+    let newIndex;
+    do {
+      newIndex = Math.floor(Math.random() * quotes.length); // Generate a random index
+    } while (newIndex === quoteIndex); // Ensure it's not the same as the current index
+    setQuoteIndex(newIndex);
   };
 
   const bioString = "Welcome to my personal website. I'm a recent computer science graduate with a passion for game development, full-stack web development, and creative projects! My site is still a work in progress, but I am enjoying coding it by hand in React. Try clicking my profile photo! For inquiries, please reach out via ";
@@ -58,10 +77,11 @@ function Home() {
                 borderRadius: '8px' }}
             />
           <Typography
+          onClick={handleQuoteClick}
             sx={{
               color: '#513450',
-              fontFamily: 'HeyGorgeous, sans'
-            }}><i>"Geese are just battle ducks." - Me, 2016</i></Typography> {/* Eventually rotate the quotes here */}
+              fontFamily: 'HeyGorgeous, sans',
+            }}><i>{quotes[quoteIndex]}</i></Typography>
         </Stack>
       </Grid>
 
