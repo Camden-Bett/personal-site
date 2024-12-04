@@ -1,12 +1,3 @@
-:root {
-    --background: #ECE2D0;
-    --primary: #5C1E73;
-    --accent-contrast: #080705;
-    --accent-similar: #60594D;
-    --accent-extra: #8B635C;
-    background-color: var(--background);
-}
-
 .capital {
     --background: #ECE2D0;
     --primary: #5C1E73;

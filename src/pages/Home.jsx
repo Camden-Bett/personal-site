@@ -125,7 +125,7 @@ function Home() {
     setQuoteIndex(newIndex);
   };
 
-  const bioString = "Welcome to my personal website. I'm a recent computer science graduate with a passion for game development, full-stack web development, and creative projects! My site is still a work in progress, but I am enjoying coding it by hand in React. Try clicking my profile photo! For inquiries, please reach out via ";
+  const bioString = "Welcome to my personal website. I'm a recent computer science graduate with a passion for game development, full-stack web development, and creative projects! My site is still a work in progress, but I am enjoying coding it by hand in React. Try clicking the elements on this page! For inquiries, please reach out via ";
 
   return (
     <Grid container>
