@@ -1,0 +1,53 @@
+:root {
+    --background: #ECE2D0;
+    --primary: #5C1E73;
+    --accent-contrast: #080705;
+    --accent-similar: #60594D;
+    --accent-extra: #8B635C;
+    background-color: var(--background);
+}
+
+.capital {
+    --background: #ECE2D0;
+    --primary: #5C1E73;
+    --accent-contrast: #080705;
+    --accent-similar: #60594D;
+    --accent-extra: #8B635C;
+    background-color: var(--background);
+}
+
+.coral {
+    --background: #1C1717;
+    --primary: #FF8884;
+    --accent-contrast: #ECE5E5;
+    --accent-similar: #D4C4C4;
+    --accent-extra: #F0E100;
+    background-color: var(--background);
+}
+
+.gilded {
+    --background: #1C291D;
+    --primary: #E2BC30;
+    --accent-contrast: #ECE5E5;
+    --accent-similar: #426145;
+    --accent-extra: #2F6690;
+    background-color: var(--background);
+}
+
+.textile {
+    --background: #D6BFA1;
+    --primary: #14342B;
+    --accent-contrast: #DB5461;
+    --accent-similar: #3C2214;
+    --accent-extra: #3891A6;
+    background-color: var(--background);
+}
+
+.wash {
+    --background: #FFFFFF;
+    --primary: #513450;
+    --accent-contrast: #F49390;
+    --accent-similar: #628395;
+    --accent-extra: #D7E8BA;
+    background-color: var(--background);
+}

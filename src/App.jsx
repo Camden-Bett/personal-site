@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { 
+import {
+  Box,
+  Button, 
   Card, 
   Divider, 
   Grid, 
@@ -16,6 +18,8 @@ import Home from './pages/Home.jsx';
 import Socials from './pages/Socials';
 import Portfolio from './pages/Portfolio';
 import Redirect from './components/Redirect';
+import { PaletteContext } from './components/PaletteContext.jsx';
+import './styles/palettes.css';
 
 function App() {
   const navItems = [
@@ -29,80 +33,145 @@ function App() {
     { name: 'Blog...?', path: '/blog' },
   ];
 
+  const paletteNames = ['capital', 'coral', 'gilded', 'textile', 'wash'];
+  const { palette, switchPalette, getColors } = useContext(PaletteContext);
+  const [paletteNum, setPaletteNum] = useState(0);
+  const [colors, setColors] = useState(getColors());
+
+  const nextPalette = () => {
+    const newPaletteNum = (paletteNum + 1) % paletteNames.length;
+    setPaletteNum(newPaletteNum);
+    switchPalette(paletteNames[newPaletteNum]);
+  }
+
+  useEffect(() => {
+    document.body.className = palette;
+    setColors(getColors());
+  }, [palette]);
+
+  /*
+  useEffect(() => {
+    document.body.style.backgroundColor = colors.background;
+  }, [colors]);
+  */
+
   return (
-    <Grid 
+    <Box
+      sx={{
+        backgroundColor: colors.background,
+        width: '100vw',
+        height: '100vh',
+        margin: 0,
+        padding: 0
+      }}>
+      <Grid 
       container 
-      spacing={2} 
-      wrap="wrap" 
-      columns={12} 
       sx={{ 
-        width: '100vw', 
-        justifyContent: 'center', 
-        alignItems: 'flex-start', 
-        minHeight: '100vh', 
-        paddingTop: 0,
-        flexDirection: { xs: 'column', md: 'row' } }}>
-      <Grid item xs={12} height='10vh'>
+        flexDirection: { xs: 'column', md: 'row' },
+        alignItems: 'stretch' }}>
+      <Grid item xs={12}>
         {/* website header */}
-        <Typography 
-          sx={{ 
-            fontSize: 'clamp(0.5rem, 5vw, 7rem)', 
-            textAlign: 'center',
-            padding: '2vh',
-            color: '#513450',
-            fontFamily: 'Cinzel, serif' 
-          }}>
-            <b>
-              <Link href="/" underline="none" color="inherit">
-                CamdenBettencourt.com
-              </Link>
-            </b>
-        </Typography>
-        <Divider aria-hidden="true" sx={{border: '1px solid', color: '#513450', spacing: 2}}/>
+        <Stack>
+          <Typography 
+            sx={{ 
+              fontSize: 'clamp(1rem, 5vw, 7rem)', 
+              textAlign: 'center',
+              color: colors.primary,
+              fontFamily: 'Cinzel, serif'
+            }}>
+              <b>
+                <Link href="/" underline="none" color="inherit">
+                  CamdenBettencourt.com
+                </Link>
+              </b>
+          </Typography>
+
+          <Divider 
+            aria-hidden="true" 
+            sx={{
+              width: '100%',
+              borderColor: colors.primary }}
+          />
+        </Stack>
       </Grid> 
 
-      {/* main content area; total grid width should always be xs=12, md=9 */}
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/socials" element={<Socials />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          {/* funny rickroll */}
-          <Route path="/secret" element={<Redirect to="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />} /> 
-        </Routes>
-      </Router>
+      {/* main content area */}
+      <Grid
+        container
+        item
+        xs={12}
+        md={9}
+        sx={{
+          alignItems: 'flex-start'
+        }}>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/socials" element={<Socials />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            {/* funny rickroll */}
+            <Route path="/secret" element={<Redirect to="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />} /> 
+          </Routes>
+        </Router>
+      </Grid>
 
       {/* directory, spacer, & logo */}
-      <Grid item xs={12} md={3} sx={{ textAlign: 'center', flexShrink: 0 }}>
-        <Stack justifyContent='space-between'>
-          <Card sx={{background: '#60594D', borderRadius: '16px'}} >
+      <Grid 
+        item 
+        xs={12} 
+        md={3} 
+        sx={{ 
+          textAlign: 'center',
+          alignItems: 'flex-start', 
+          paddingTop: '1rem' }}>
+          <Card sx={{
+            background: colors.accentSimilar, 
+            alignItems: 'space-between', 
+            borderRadius: '16px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            height: '100%',
+            mr: 2}} >
             {/* directory (layout also viewport-width-dependent) */}
-            <>
-              {navItems.map((item) => (
-                    <List disablePadding>
-                      {item.name !== navItems[0].name ? <Divider variant='middle' /> : null}
-                      <ListItem disablePadding>
-                        <ListItemButton component='a' href={item.path} sx={{justifyContent: 'center'}}>
-                          <Typography sx={{
-                            fontSize: '24px', 
-                            textAlign: 'center',
-                            fontFamily: 'Cinzel, serif'
-                          }}
-                            color={item.path === location.pathname ? '#080705' : '#ECE2D0'}
-                          >
-                            <b>
-                              {item.name}
-                            </b>
-                          </Typography>
-                        </ListItemButton>
-                      </ListItem>
-                    </List>
-                  ))}
-            </>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexGrow: 1 }}>
+              <List disablePadding>
+                {navItems.map((item) => (
+                      <React.Fragment key={item.path}>
+                        {item.name !== navItems[0].name ? <Divider variant='middle' /> : null}
+                        <ListItem disablePadding>
+                          <ListItemButton component='a' href={item.path} sx={{justifyContent: 'center'}}>
+                            <Typography sx={{
+                              fontSize: '24px', 
+                              textAlign: 'center',
+                              fontFamily: 'Cinzel, serif'
+                            }}
+                              color={item.path === location.pathname ? colors.accentContrast : colors.background}
+                            >
+                              <b>{item.name}</b>
+                            </Typography>
+                          </ListItemButton>
+                        </ListItem>
+                      </React.Fragment>
+                    ))}
+              </List>
+            </Box>
+
+            {/* palette changer */}
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', padding: '1rem' }}>
+              <Button>
+                <img
+                    src="./src/assets/CB-Logo-White.png"
+                    alt="Palette Swapper"
+                    width='100px'
+                    height='100px'
+                    onClick={() => nextPalette()}/>
+              </Button>
+            </Box>
           </Card>
-        </Stack>
+        </Grid>
       </Grid>
-    </Grid>
+    </Box>
   )
 }
 
